@@ -1,10 +1,4 @@
-export type NavItem = {
-  label: string;
-  path: string;
-  children?: NavItem[];
-};
-
-export const NAV: NavItem[] = [
+export const NAV = [
   {
     label: "About Us",
     path: "/youngji_about-us/",
