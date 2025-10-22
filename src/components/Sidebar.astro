@@ -1,0 +1,35 @@
+---
+import type { NavItem } from "../data/nav";
+import { withBase } from "../utils/url";
+const { navItems, currentPath } = Astro.props as {
+  navItems: NavItem[];
+  currentPath: string;
+};
+
+const activeSection = navItems.find((item) => currentPath.startsWith(item.path));
+const children = activeSection?.children ?? [];
+---
+{children.length > 0 ? (
+  <aside class="sticky top-24 hidden h-max min-w-[220px] space-y-2 rounded-lg bg-white p-4 shadow md:block">
+    <h2 class="text-lg font-semibold text-brand-blue">{activeSection?.label}</h2>
+    <nav aria-label="Section navigation">
+      <ul class="space-y-2 text-sm">
+        {children.map((child) => {
+          const isActive = currentPath === child.path;
+          return (
+            <li>
+              <a
+                href={withBase(child.path)}
+                class={`block rounded px-3 py-2 transition-colors ${
+                  isActive ? "bg-brand-blue text-white" : "text-slate-700 hover:bg-brand-blue/10"
+                }`}
+              >
+                {child.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  </aside>
+) : null}

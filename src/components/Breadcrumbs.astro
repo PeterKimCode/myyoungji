@@ -1,0 +1,45 @@
+---
+import type { NavItem } from "../data/nav";
+import { withBase } from "../utils/url";
+const { navItems, currentPath } = Astro.props as {
+  navItems: NavItem[];
+  currentPath: string;
+};
+
+const matchPath = (path: string) => path.replace(/\/$/, "");
+
+function findTrail(items: NavItem[], path: string, trail: NavItem[] = []): NavItem[] {
+  for (const item of items) {
+    const newTrail = [...trail, item];
+    if (matchPath(item.path) === matchPath(path)) {
+      return newTrail;
+    }
+    if (item.children) {
+      const childTrail = findTrail(item.children, path, newTrail);
+      if (childTrail.length > 0) {
+        return childTrail;
+      }
+    }
+  }
+  return [];
+}
+
+const trail = findTrail(navItems, currentPath);
+---
+<nav aria-label="Breadcrumb" class="mb-6 text-sm text-slate-600">
+  <ol class="flex flex-wrap items-center gap-2">
+    <li>
+      <a href={withBase("/")} class="hover:underline">Home</a>
+    </li>
+    {trail.map((item, index) => (
+      <li class="flex items-center gap-2">
+        <span aria-hidden="true">/</span>
+        {index === trail.length - 1 ? (
+          <span class="font-semibold text-brand-blue">{item.label}</span>
+        ) : (
+          <a href={withBase(item.path)} class="hover:underline">{item.label}</a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>

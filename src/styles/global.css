@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply min-h-screen bg-slate-50 text-slate-900 font-sans;
+}
+
+a {
+  @apply text-brand-blue hover:text-brand-gold transition-colors;
+}
+
+main h1 {
+  @apply text-3xl font-semibold text-brand-blue;
+}
+
+main h2 {
+  @apply text-2xl font-semibold;
+}
+
+main p {
+  @apply text-base leading-relaxed;
+}
+
+.table-basic {
+  @apply w-full border-collapse;
+}
+
+.table-basic th,
+.table-basic td {
+  @apply border border-slate-200 px-3 py-2 text-left;
+}

@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../utils/url";
+---
+<BaseLayout title="Basic Education" description="Explore Young Ji International School's basic education programs.">
+  <h1>Basic Education</h1>
+  <p>
+    From preschool to senior high school, Young Ji International School delivers a continuum of learning experiences that
+    encourage curiosity, collaboration, and personal growth.
+  </p>
+  <ul class="list-disc space-y-2 pl-5">
+    <li><a href={withBase("/basic-education/principals-message/")}>Principal’s Message</a></li>
+    <li><a href={withBase("/basic-education/preschool/")}>Preschool</a></li>
+    <li><a href={withBase("/basic-education/elementary/")}>Elementary</a></li>
+    <li><a href={withBase("/basic-education/middle-junior/")}>Middle/Junior</a></li>
+    <li><a href={withBase("/basic-education/high-senior/")}>High/Senior</a></li>
+  </ul>
+</BaseLayout>
