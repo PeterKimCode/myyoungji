@@ -4,18 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
+    "dev": "node scripts/build.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs"
   },
-  "dependencies": {
-    "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.10.3",
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.4"
-  },
-  "devDependencies": {
-    "typescript": "^5.4.5"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
