@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../utils/url";
+---
+<BaseLayout title="Community" description="Connect with the Young Ji International School community.">
+  <h1>Community</h1>
+  <p>
+    Stay up to date with campus news, activities, and resources. The community section highlights events, support
+    services, and opportunities to engage with YJIS.
+  </p>
+  <ul class="list-disc space-y-2 pl-5">
+    <li><a href={withBase("/community/news-2/")}>SCHOOL LIFE</a></li>
+    <li><a href={withBase("/community/notification/")}>News / Notification</a></li>
+    <li><a href={withBase("/community/campus-life/")}>Contact Info</a></li>
+    <li><a href={withBase("/community/extension-class-center/")}>Branch school of YJIS</a></li>
+    <li><a href={withBase("/community/search-for-student/")}>Contact Info &amp; Search for student</a></li>
+  </ul>
+</BaseLayout>

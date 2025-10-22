@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../utils/url";
+---
+<BaseLayout title="About Us" description="Discover the story, mission, and leadership of Young Ji International School.">
+  <h1>About Us</h1>
+  <p>
+    Learn about our guiding mission, leadership team, and the history that shaped Young Ji International School.
+    Explore the resources in this section to understand our commitment to high-quality education and student well-being.
+  </p>
+  <ul class="list-disc space-y-2 pl-5">
+    <li><a href={withBase("/youngji_about-us/vision-and-mission/")}>Mission and Vision</a></li>
+    <li><a href={withBase("/youngji_about-us/principals-message/")}>Founder’s message</a></li>
+    <li><a href={withBase("/youngji_about-us/school-counseling/")}>President Message</a></li>
+    <li><a href={withBase("/youngji_about-us/faculty-and-staff/")}>Faculty and staff</a></li>
+    <li><a href={withBase("/youngji_about-us/history/")}>History</a></li>
+    <li><a href={withBase("/youngji_about-us/school-administrator/")}>School Calendar</a></li>
+  </ul>
+</BaseLayout>

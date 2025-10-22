@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../utils/url";
+---
+<BaseLayout title="e-Education" description="Discover Young Ji International School's e-education initiatives and online programs.">
+  <h1>e-Education</h1>
+  <p>
+    Young Ji International School extends learning beyond the classroom through flexible online programs and blended
+    experiences that support diverse learning needs.
+  </p>
+  <ul class="list-disc space-y-2 pl-5">
+    <li><a href={withBase("/e-education/online-school/")}>Director’s message</a></li>
+    <li><a href={withBase("/e-education/online-school-k-12/")}>Extension YJIS</a></li>
+    <li><a href={withBase("/e-education/online-college/")}>Accreditation</a></li>
+    <li><a href={withBase("/e-education/online-examination/")}>Online Examination</a></li>
+    <li><a href={withBase("/new-page-1/")}>Extension Class Coordinator</a></li>
+    <li><a href={withBase("/new-page-2/")}>Extension Class Teacher</a></li>
+  </ul>
+</BaseLayout>

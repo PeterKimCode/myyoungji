@@ -1,0 +1,48 @@
+---
+import Header from "../components/Header.astro";
+import Sidebar from "../components/Sidebar.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { NAV } from "../data/nav";
+import "../styles/global.css";
+
+const { title, description } = Astro.props as {
+  title: string;
+  description?: string;
+};
+
+const currentPath = Astro.url.pathname.endsWith("/")
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title ? `${title} | Young Ji International School` : "Young Ji International School"}</title>
+    {description && <meta name="description" content={description} />}
+  </head>
+  <body>
+    <a href="#main" class="absolute left-1/2 top-2 -translate-x-1/2 rounded bg-brand-blue px-4 py-2 text-white focus:translate-y-0 focus:outline-none">
+      Skip to main content
+    </a>
+    <div class="flex min-h-screen flex-col">
+      <Header navItems={NAV} currentPath={currentPath} />
+      <div class="mx-auto flex w-full max-w-6xl flex-1 gap-8 px-4 py-8">
+        <Sidebar navItems={NAV} currentPath={currentPath} />
+        <main id="main" class="w-full space-y-6">
+          <Breadcrumbs navItems={NAV} currentPath={currentPath} />
+          <article class="space-y-6 rounded-lg bg-white p-6 shadow">
+            <slot />
+          </article>
+        </main>
+      </div>
+      <footer class="bg-brand-blue py-6 text-sm text-white">
+        <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 md:flex-row md:items-center md:justify-between">
+          <p>&copy; {new Date().getFullYear()} Young Ji International School. All rights reserved.</p>
+          <p>Static site generated (SSG: Static Site Generation) with Astro.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { NAV } from "../data/nav";
+import { withBase } from "../utils/url";
+const description = "Discover Young Ji International School's programs, admissions, and community updates.";
+---
+<BaseLayout title="Welcome" description={description}>
+  <h1>Young Ji International School</h1>
+  <p>
+    Young Ji International School (YJIS) nurtures global citizens through a holistic curriculum and a caring
+    community. Explore our academic programs, admissions process, and vibrant campus life.
+  </p>
+  <section class="grid gap-6 md:grid-cols-2">
+    {NAV.map((section) => (
+      <div class="rounded border border-slate-200 p-4">
+        <h2 class="text-xl font-semibold text-brand-blue">{section.label}</h2>
+        <p class="mt-2 text-sm text-slate-600">
+          Learn more about our {section.label.toLowerCase()} initiatives and resources.
+        </p>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>
+            <a href={withBase(section.path)} class="font-medium">Visit {section.label} landing page &rarr;</a>
+          </li>
+          {section.children?.slice(0, 2).map((child) => (
+            <li>
+              <a href={withBase(child.path)} class="text-slate-700 hover:underline">{child.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </section>
+</BaseLayout>

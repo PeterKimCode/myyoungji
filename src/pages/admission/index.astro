@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../utils/url";
+---
+<BaseLayout title="Admission" description="Start your application journey with Young Ji International School.">
+  <h1>Admission</h1>
+  <p>
+    Discover the admissions process, requirements, and support services available to prospective families. We guide you
+    from inquiry to enrollment with transparent steps and personalized assistance.
+  </p>
+  <ul class="list-disc space-y-2 pl-5">
+    <li><a href={withBase("/admission/sub1/")}>Scholarship</a></li>
+    <li><a href={withBase("/admission/sub2/")}>Admission Procedure</a></li>
+    <li><a href={withBase("/admission/sub3/")}>Tuition Fees</a></li>
+    <li><a href={withBase("/admission/sub4/")}>Application form</a></li>
+    <li><a href={withBase("/admission/sub5/")}>Admissions Requirements</a></li>
+  </ul>
+</BaseLayout>

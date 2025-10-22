@@ -1,0 +1,76 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+const students = [
+  { id: "YJIS001", name: "Alex Kim", grade: "Grade 3", email: "alex.kim@yjis.edu" },
+  { id: "YJIS002", name: "Mina Park", grade: "Grade 5", email: "mina.park@yjis.edu" },
+  { id: "YJIS003", name: "Daniel Cruz", grade: "Grade 8", email: "daniel.cruz@yjis.edu" },
+  { id: "YJIS004", name: "Sofia Reyes", grade: "Grade 10", email: "sofia.reyes@yjis.edu" }
+];
+const serializedStudents = JSON.stringify(students, null, 2).replace(/</g, "\\u003c");
+---
+<BaseLayout title="Contact Info & Search for student" description="Search for enrolled students and find community contact information.">
+  <h1>Contact Info &amp; Search for student</h1>
+  <p>
+    Use the search box to filter students by name, grade, or ID. Results update instantly in the table below. This
+    interactive experience uses CSR (Client-Side Rendering) to keep the page responsive without reloading.
+  </p>
+  <div class="space-y-4">
+    <label class="block text-sm font-medium text-slate-700" for="student-query">Search students</label>
+    <input
+      id="student-query"
+      type="search"
+      placeholder="Search by name, grade, or ID"
+      class="w-full max-w-xl rounded border border-slate-300 px-3 py-2 shadow-sm focus:border-brand-blue focus:outline-none"
+    />
+    <div class="overflow-x-auto">
+      <table class="table-basic text-sm">
+        <thead class="bg-slate-100">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Grade</th>
+            <th scope="col">Email</th>
+          </tr>
+        </thead>
+        <tbody id="student-rows"></tbody>
+      </table>
+    </div>
+  </div>
+  <script type="application/json" id="student-data">
+{serializedStudents}
+  </script>
+  <script is:client>
+    const dataElement = document.getElementById('student-data');
+    const students = dataElement ? JSON.parse(dataElement.textContent || '[]') : [];
+    const input = document.getElementById('student-query');
+    const tbody = document.getElementById('student-rows');
+
+    const renderRows = (list) => {
+      tbody.innerHTML = list
+        .map(
+          (student) => `
+            <tr>
+              <td class="font-mono">${student.id}</td>
+              <td>${student.name}</td>
+              <td>${student.grade}</td>
+              <td><a href="mailto:${student.email}" class="hover:underline">${student.email}</a></td>
+            </tr>
+          `
+        )
+        .join('');
+    };
+
+    const filterStudents = (query) => {
+      const q = query.toLowerCase();
+      return students.filter((student) =>
+        [student.name, student.grade, student.id].some((value) => value.toLowerCase().includes(q))
+      );
+    };
+
+    renderRows(students);
+    input?.addEventListener('input', () => {
+      renderRows(filterStudents(input.value));
+    });
+  </script>
+</BaseLayout>
